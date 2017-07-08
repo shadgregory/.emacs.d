@@ -19,4 +19,11 @@
     (add-hook 'clojure-mode-hook          #'enable-paredit-mode)
     (add-hook 'cider-repl-mode-hook       #'enable-paredit-mode)))
 
+(defun run-kawa ()
+  "Run Kawa Scheme in an Emacs buffer."
+  (interactive)
+  (require 'cmuscheme)
+  (let ((scheme-program-name "/usr/local/bin/kawa"))
+    (run-scheme scheme-program-name)))
+
 (provide 'lispen)

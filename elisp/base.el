@@ -8,8 +8,6 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-
 (use-package ivy
   :bind
   ("C-x s" . swiper)
@@ -26,5 +24,13 @@
    undo-tree-auto-save-history nil
    undo-tree-history-directory-alist `(("." . ,(concat temp-dir "/undo/"))))
   (global-undo-tree-mode 1))
+
+(display-time-mode 1)
+(load-theme 'leuven)
+
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook))
+
 
 (provide 'base)
