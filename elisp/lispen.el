@@ -19,6 +19,13 @@
     (add-hook 'clojure-mode-hook          #'enable-paredit-mode)
     (add-hook 'cider-repl-mode-hook       #'enable-paredit-mode)))
 
+(use-package clojure-mode
+  :ensure t
+  :config (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
+
+(use-package cider
+  :ensure t)
+
 (defun run-kawa ()
   "Run Kawa Scheme in an Emacs buffer."
   (interactive)
