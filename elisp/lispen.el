@@ -4,6 +4,8 @@
   (progn
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
 
+(use-package aggressive-indent :ensure t)
+
 (use-package racket-mode
   :ensure t
   :config (add-hook 'racket-mode-hook #'aggressive-indent-mode))
