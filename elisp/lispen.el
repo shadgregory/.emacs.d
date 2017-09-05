@@ -29,8 +29,12 @@
   :ensure t
   :config (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
 
-(use-package cider
-  :ensure t)
+(use-package cider :ensure t)
+
+(use-package clj-refactor
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook #'clj-refactor-mode))
 
 (defun run-kawa ()
   "Run Kawa Scheme in an Emacs buffer."
