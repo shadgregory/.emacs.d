@@ -8,10 +8,19 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq visible-bell 1)
 (setq column-number-mode t)
+(setq-default indent-tabs-mode nil)
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
+(add-hook 'sql-mode-hook 'sql-highlight-oracle-keywords)
+(setq js-indent-level 2)
+(setq-default js2-basic-offset 2)
+
+(use-package projectile
+  :ensure t
+  :config (progn
+            (projectile-global-mode)))
 
 (use-package ivy
   :bind
@@ -53,6 +62,7 @@
   :mode (("\\.html\\'" . web-mode)
 	 ("\\.js\\'" . web-mode)
 	 ("\\.css\\'" . web-mode)
+         ("\\.cfc\\'" . web-mode)
 	 ("\\.cfm\\'" . web-mode)
 	 ("\\.cfml\\'" . web-mode)))
 
