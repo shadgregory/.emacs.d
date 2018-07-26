@@ -6,12 +6,26 @@
 
 (show-paren-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq visible-bell 1)
-(setq column-number-mode t)
+(setq-default indent-tabs-mode nil)
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
+(add-hook 'sql-mode-hook 'sql-highlight-oracle-keywords)
+(setq js-indent-level 2)
+(setq-default js2-basic-offset 2)
+(setq use-package-always-ensure t
+      column-number-mode        t
+      visible-bell              1)
+
+(use-package projectile
+  :ensure t
+  :config (progn
+            (projectile-global-mode)))
+
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package ivy
   :bind
@@ -53,6 +67,7 @@
   :mode (("\\.html\\'" . web-mode)
 	 ("\\.js\\'" . web-mode)
 	 ("\\.css\\'" . web-mode)
+         ("\\.cfc\\'" . web-mode)
 	 ("\\.cfm\\'" . web-mode)
 	 ("\\.cfml\\'" . web-mode)))
 
@@ -62,5 +77,7 @@
 	 (add-hook 'sql-mode-hook 'sqlind-setup)
 	 (eval-after-load "sql"
 	   '(load-library "sql-indent"))))
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (provide 'base)
