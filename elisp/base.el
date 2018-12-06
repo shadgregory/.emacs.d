@@ -19,51 +19,54 @@
       visible-bell              1)
 
 (use-package projectile
-  :ensure t
-  :config (progn
-            (projectile-global-mode)))
+  :diminish projectile-mode
+  :init
+  (setq projectile-keymap-prefix (kbd "C-c p"))
+  :config
+  (projectile-global-mode))
 
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
-(use-package ivy
+(use-package helm
   :bind
-  ("C-x s" . swiper)
-  ("C-x C-r" . ivy-resume)
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers nil)
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+  ("M-x" . helm-M-x)
+  ("C-x C-f" . helm-find-files)
+  ("C-x C-b" . helm-buffers-list)
+  ("C-x b" . helm-buffers-list)
+  :config (helm-mode 1))
 
 (use-package undo-tree
-  :ensure t
   :config
   ;; Remember undo history
   (setq
-   undo-tree-auto-save-history nil
-   ;;undo-tree- history-directory-alist `(("." . ,(concat temp-dir "/undo/")))
-   )
+   undo-tree-auto-save-history nil)
   (global-undo-tree-mode 1))
 
 (display-time-mode 1)
 (load-theme 'leuven)
 
 (use-package dashboard
-  :ensure t
   :config
   (dashboard-setup-startup-hook))
 
 (use-package magit
-  :ensure t)
+  :defer 2
+  :ensure t
+  :pin melpa
+  :bind
+  (("C-x g" . magit-status)
+   ("C-x M-d" . magit-dispatch-popup)))
 
 (use-package web-mode
   :ensure t
-  :config (progn
-	    (setq web-mode-enable-css-colorization t)
-	    (setq web-mode-style-padding 2)
-	    (setq web-mode-markup-indent-offset 2)
-	    (setq web-mode-css-indent-offset 2))
+  :config
+  (setq web-mode-enable-css-colorization t)
+  (setq web-mode-style-padding 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
   :mode (("\\.html\\'" . web-mode)
 	 ("\\.js\\'" . web-mode)
 	 ("\\.css\\'" . web-mode)
@@ -77,6 +80,13 @@
 	 (add-hook 'sql-mode-hook 'sqlind-setup)
 	 (eval-after-load "sql"
 	   '(load-library "sql-indent"))))
+
+(use-package org-bullets
+  :config
+  (setq org-hide-leading-stars t)
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-bulets-mode t))))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
