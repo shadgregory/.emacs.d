@@ -1,23 +1,21 @@
 (use-package rainbow-delimiters
-  :ensure t
   :init
   (progn
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
 
-(use-package aggressive-indent :ensure t)
+(use-package aggressive-indent)
 
 (use-package racket-mode
-  :ensure t
   :config (add-hook 'racket-mode-hook #'aggressive-indent-mode))
 
 (use-package clojure-mode
-  :ensure t
   :config (add-hook 'clojure-mode-hook #'aggressive-indent-mode))
 
-(use-package cider :ensure t)
+(use-package cider
+  :pin melpa-stable)
 
 (use-package clj-refactor
-  :ensure t
+  :pin melpa-stable
   :config
   (add-hook 'clojure-mode-hook #'clj-refactor-mode))
 
@@ -29,7 +27,6 @@
     (run-scheme scheme-program-name)))
 
 (use-package paredit
-  :ensure t
   :init
   (progn
     (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)

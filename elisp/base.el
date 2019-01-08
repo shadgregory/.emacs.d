@@ -1,9 +1,3 @@
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives
-	     '("melpa-stable" . "http://stable.melpa.org/packages/"))
-
 (show-paren-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default indent-tabs-mode nil)
@@ -28,6 +22,10 @@
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package which-key
+  :init
+  (which-key-mode))
 
 (use-package helm
   :bind

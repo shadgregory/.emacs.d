@@ -1,5 +1,9 @@
-
+(require 'package)
 (package-initialize)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+	     '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
 (if (not (package-installed-p 'use-package))
@@ -8,7 +12,7 @@
       (package-install 'use-package)))
 
 (eval-when-compile
-(require 'use-package))
+  (require 'use-package))
 (require 'base)
 (require 'golden-ratio)
 (require 'lispen)
