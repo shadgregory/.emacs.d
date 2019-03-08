@@ -11,6 +11,15 @@
 (setq use-package-always-ensure t
       column-number-mode        t
       visible-bell              1)
+(mapc
+ (lambda (pair)
+   (if (eq (cdr pair) 'perl-mode)
+       (setcdr pair 'cperl-mode)))
+ (append auto-mode-alist interpreter-mode-alist))
+
+(defun pl/helm-alive-p ()
+  (if (boundp 'helm-alive-p)
+      (symbol-value 'helm-alive-p)))
 
 (use-package projectile
   :diminish projectile-mode
@@ -33,7 +42,16 @@
   ("C-x C-f" . helm-find-files)
   ("C-x C-b" . helm-buffers-list)
   ("C-x b" . helm-buffers-list)
-  :config (helm-mode 1))
+  :config
+  (helm-mode 1)
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 20)
+  (helm-autoresize-mode t)
+  (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
+  (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p))
+
+(use-package helm-projectile
+  :config (helm-projectile-on))
 
 (use-package undo-tree
   :config
