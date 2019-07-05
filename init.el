@@ -14,10 +14,9 @@
 (eval-when-compile
   (require 'use-package))
 (require 'base)
-(require 'golden-ratio)
 (require 'lispen)
 ;;(require 'sqlplus-x-connect)
-(golden-ratio-mode 1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,7 +27,7 @@
  '(jdee-server-dir "~/myJars")
  '(package-selected-packages
    (quote
-    (helm jdee treemacs slime ediprolog org-bullets company sqlplus sql-indent web-mode undo-tree ivy dashboard cider racket-mode use-package paredit)))
+    (golden-ratio ace-window dasxbhboard helm jdee treemacs slime ediprolog org-bullets company sqlplus sql-indent web-mode undo-tree ivy dashboard cider racket-mode use-package paredit)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces

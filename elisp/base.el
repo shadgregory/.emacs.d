@@ -36,6 +36,18 @@
   :init
   (which-key-mode))
 
+(use-package ace-window
+  :config
+  (global-set-key (kbd "s-w") 'ace-window)
+  (global-set-key [remap other-window] 'ace-window))
+
+(use-package golden-ratio
+  :ensure t
+  :diminish golden-ratio-mode
+  :config
+  (add-to-list 'golden-ratio-extra-commands 'ace-window)
+  (golden-ratio-mode 1))
+
 (use-package helm
   :bind
   ("M-x" . helm-M-x)
@@ -65,6 +77,10 @@
 
 (use-package dashboard
   :config
+  (setq dashboard-items '((recents  . 10)
+                        (bookmarks . 5)
+                        (projects . 5)
+                        (agenda . 5)))
   (dashboard-setup-startup-hook))
 
 (use-package magit
