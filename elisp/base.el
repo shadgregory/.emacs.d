@@ -11,6 +11,7 @@
 (setq use-package-always-ensure t
       column-number-mode        t
       visible-bell              1)
+(setq erc-hide-list '("JOIN" "PART" "QUIT"))
 (mapc
  (lambda (pair)
    (if (eq (cdr pair) 'perl-mode)
@@ -25,6 +26,7 @@
   :diminish projectile-mode
   :init
   (setq projectile-keymap-prefix (kbd "C-c p"))
+  (setq projectile-globally-ignored-directories '("target" "log"))
   :config
   (projectile-global-mode))
 
@@ -82,6 +84,17 @@
                         (projects . 5)
                         (agenda . 5)))
   (dashboard-setup-startup-hook))
+
+(use-package elfeed
+  :config
+ (setq-default elfeed-search-filter "@2-week-ago +unread ")
+ (setq browse-url-browser-function 'eww-browse-url)
+ (setq elfeed-feeds
+       '(("https://www.motherjones.com/kevin-drum/feed/" news)
+         ("https://old.reddit.com/r/emacs.rss" emacs)
+         ("http://planet.clojure.in/atom.xml" clojure)
+         ("http://planet.emacsen.org/atom.xml" emacs)
+         ("http://www.msnbc.com/feeds/rss/byline/steve-benen" news))))
 
 (use-package magit
   :defer 2
