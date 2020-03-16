@@ -131,7 +131,7 @@
   (setq org-hide-leading-stars t)
   (add-hook 'org-mode-hook
             (lambda ()
-              (org-bulets-mode t))))
+              (org-bullets-mode t))))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
