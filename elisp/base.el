@@ -75,11 +75,10 @@
   (global-undo-tree-mode 1))
 
 (display-time-mode 1)
-(load-theme 'leuven)
-
+;;(load-theme 'leuven)
 (use-package dashboard
   :config
-  (setq dashboard-items '((recents  . 10)
+  (setq dashboard-items '((recents  . 15)
                         (bookmarks . 5)
                         (projects . 5)
                         (agenda . 5)))

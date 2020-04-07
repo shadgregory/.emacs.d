@@ -11,6 +11,8 @@
       (package-refresh-contents)
       (package-install 'use-package)))
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'shad t)
 (eval-when-compile
   (require 'use-package))
 (require 'base)
