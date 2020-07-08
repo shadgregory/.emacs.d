@@ -40,4 +40,6 @@
     (add-hook 'racket-mode-hook           #'enable-paredit-mode)
     (add-hook 'racket-repl-mode-hook      #'enable-paredit-mode)))
 
+(setq inferior-lisp-program "/usr/bin/sbcl")
+
 (provide 'lispen)
