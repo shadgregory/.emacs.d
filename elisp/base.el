@@ -1,4 +1,5 @@
 (show-paren-mode 1)
+(blink-cursor-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq tramp-default-method "ssh")
 (setq-default indent-tabs-mode nil)
@@ -14,12 +15,17 @@
       visible-bell              1)
 (setq erc-hide-list '("JOIN" "PART" "QUIT"))
 (setq ring-bell-function 'ignore)
-(blink-cursor-mode 0)
+
+(add-to-list 'load-path "~/.emacs.d/elisp/cfml-mode")
+(add-to-list 'auto-mode-alist '("\\.cfm\\'" . cfml-mode))
+(add-to-list 'auto-mode-alist '("\\.cfc\\'" . cfml-mode))
+
 (mapc
  (lambda (pair)
    (if (eq (cdr pair) 'perl-mode)
        (setcdr pair 'cperl-mode)))
  (append auto-mode-alist interpreter-mode-alist))
+
 (require 'eshell)
 (require 'em-smart)
 (setq eshell-where-to-jump 'begin)
@@ -43,6 +49,17 @@
 
 (require 'saveplace)
 (setq-default save-place t)
+
+;; Resume clocking task when emacs is restarted
+(org-clock-persistence-insinuate)
+;; Save the running clock and all clock history when exiting Emacs, load it on startup
+(setq org-clock-persist t)
+;; Resume clocking task on clock-in if the clock is open
+(setq org-clock-in-resume t)
+;; Do not prompt to resume an active clock, just resume it
+(setq org-clock-persist-query-resume nil)
+;; use pretty things for the clocktable
+(setq org-pretty-entities t)
 
 (defun pl/helm-alive-p ()
   (if (boundp 'helm-alive-p)
@@ -111,8 +128,8 @@
   :config
   (setq dashboard-items '((recents  . 20)
                           (bookmarks . 5)
-                        (projects . 5)
-                        (agenda . 5)))
+                          (projects . 5)
+                          (agenda . 5)))
   (dashboard-setup-startup-hook))
 
 (defun bjm/elfeed-show-visit-gui ()
