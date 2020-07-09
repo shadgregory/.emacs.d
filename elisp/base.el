@@ -44,8 +44,6 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
-(add-to-list 'load-path "~/.emacs.d/elisp/cfml-mode")
-(add-to-list 'auto-mode-alist '("\\.cfm\\'" . cfml-mode))
 
 (require 'saveplace)
 (setq-default save-place t)
