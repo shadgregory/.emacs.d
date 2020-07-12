@@ -136,12 +136,20 @@
     (let ((browse-url-generic-program "/usr/bin/firefox"))
       (elfeed-show-visit t)))
 
+(define-key elfeed-show-mode-map (kbd "B") 'bjm/elfeed-show-visit-gui)
+
+(defun elfeed-display-buffer (buf &optional act)
+  (pop-to-buffer buf)
+  (set-window-text-height (get-buffer-window) (round (* 0.7 (frame-height)))))
+
 (use-package elfeed
   :bind (:map elfeed-search-mode-map
               ("B" . bjm/elfeed-show-visit-gui))
   :config
-  (setq-default elfeed-search-filter "@1-week-ago +unread ")
+  (setq-default elfeed-search-filter "@7-days-ago--1-day-ago")
   (setq browse-url-browser-function 'eww-browse-url)
+  (setq elfeed-show-entry-switch #'elfeed-display-buffer)
+  (setq shr-width 100)
   (setq elfeed-feeds
        '(("https://www.motherjones.com/kevin-drum/feed/" news)
          ("https://jvns.ca/atom.xml" tech)
