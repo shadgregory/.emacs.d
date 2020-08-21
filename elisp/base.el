@@ -66,7 +66,20 @@
 (use-package projectile
   :diminish projectile-mode
   :init
-  (setq projectile-keymap-prefix (kbd "C-c p"))
+  (setq projectile-keymap-prefix (kbd "C-c p")
+        projectile-use-native-indexing nil)
+  (setq projectile-globally-ignored-files
+        '("*.json"
+          "*.ttf"
+          "*.eot"
+          "*.woff"
+          "*.woff2"
+          "*.jar"
+          "*.log"
+          "*.svg"
+          "#*#"
+          "*.pom"
+          "*.db"))
   (setq projectile-globally-ignored-directories '("target" "log" "compiled" "builds"))
   :config
   (projectile-global-mode))
@@ -84,12 +97,11 @@
   (global-set-key (kbd "s-w") 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
 
-(use-package golden-ratio
+(use-package zoom
   :ensure t
-  :diminish golden-ratio-mode
   :config
-  (add-to-list 'golden-ratio-extra-commands 'ace-window)
-  (golden-ratio-mode 1))
+  (zoom-mode t)
+  (custom-set-variables '(zoom-size (0.618 . 0.618))))
 
 (use-package helm
   :bind
@@ -103,7 +115,8 @@
   (setq helm-autoresize-min-height 20)
   (helm-autoresize-mode t)
   (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
-  (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p))
+  ;;(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+  )
 
 (use-package helm-projectile
   :config (helm-projectile-on))
