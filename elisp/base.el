@@ -101,7 +101,7 @@
   :ensure t
   :config
   (zoom-mode t)
-  (custom-set-variables '(zoom-size (0.618 . 0.618))))
+  (custom-set-variables '(zoom-size '(0.618 . 0.618))))
 
 (use-package helm
   :bind
