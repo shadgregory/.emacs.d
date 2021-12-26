@@ -17,7 +17,8 @@
   (require 'use-package))
 (require 'base)
 (require 'lispen)
-(require 'my-eshell)
+(require 'pgn-mode)
+;;(require 'my-eshell)
 ;;(require 'sqlplus-x-connect)
 
 (custom-set-variables

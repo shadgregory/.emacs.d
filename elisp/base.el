@@ -17,6 +17,7 @@
 (setq ring-bell-function 'ignore)
 
 (add-to-list 'load-path "~/.emacs.d/elisp/cfml-mode")
+(autoload 'cfml-mode "cfml-mode")
 (add-to-list 'auto-mode-alist '("\\.cfm\\'" . cfml-mode))
 (add-to-list 'auto-mode-alist '("\\.cfc\\'" . cfml-mode))
 
@@ -148,8 +149,6 @@
     (interactive)
     (let ((browse-url-generic-program "/usr/bin/firefox"))
       (elfeed-show-visit t)))
-
-(define-key elfeed-show-mode-map (kbd "B") 'bjm/elfeed-show-visit-gui)
 
 (defun elfeed-display-buffer (buf &optional act)
   (pop-to-buffer buf)
