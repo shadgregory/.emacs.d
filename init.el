@@ -27,7 +27,6 @@
  '(column-number-mode t)
  '(custom-enabled-themes '(whiteboard))
  '(display-time-mode t)
- '(jdee-server-dir "~/myJars")
  '(package-selected-packages
    '(lsp-java dap-mode magit-reviewboard xwwp-follow-link-helm sql-indent cfml-mode lsp-ui lsp-mode eshell-git-prompt eshell-fringe-status org-present golden-ratio ace-window dasxbhboard helm jdee treemacs slime ediprolog org-bullets company sqlplus web-mode undo-tree ivy dashboard cider racket-mode use-package paredit))
  '(tool-bar-mode nil)
