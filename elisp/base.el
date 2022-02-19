@@ -144,35 +144,35 @@
                           (agenda . 5)))
   (dashboard-setup-startup-hook))
 
-(defun bjm/elfeed-show-visit-gui ()
-    "Wrapper for elfeed-show-visit to use gui browser instead of eww"
-    (interactive)
-    (let ((browse-url-generic-program "/usr/bin/firefox"))
-      (elfeed-show-visit t)))
+;; (defun bjm/elfeed-show-visit-gui ()
+;;     "Wrapper for elfeed-show-visit to use gui browser instead of eww"
+;;     (interactive)
+;;     (let ((browse-url-generic-program "/usr/bin/firefox"))
+;;       (elfeed-show-visit t)))
 
-(defun elfeed-display-buffer (buf &optional act)
-  (pop-to-buffer buf)
-  (set-window-text-height (get-buffer-window) (round (* 0.7 (frame-height)))))
+;; (defun elfeed-display-buffer (buf &optional act)
+;;   (pop-to-buffer buf)
+;;   (set-window-text-height (get-buffer-window) (round (* 0.7 (frame-height)))))
 
-(use-package elfeed
-  :bind (:map elfeed-search-mode-map
-              ("B" . bjm/elfeed-show-visit-gui))
-  :config
-  (setq-default elfeed-search-filter "@7-days-ago--1-day-ago")
-  (setq browse-url-browser-function 'eww-browse-url)
-  (setq elfeed-show-entry-switch #'elfeed-display-buffer)
-  (setq shr-width 100)
-  (setq elfeed-feeds
-       '(("https://www.motherjones.com/kevin-drum/feed/" news)
-         ("https://jvns.ca/atom.xml" tech)
-         ("https://www.filfre.net/feed/rss/" games)
-         ("http://pragmaticemacs.com/feed/" emacs)
-         ("https://old.reddit.com/r/emacs.rss" emacs)
-         ("https://old.reddit.com/r/classicalguitar.rss" guitar)
-         ("https://old.reddit.com/r/austin.rss" local austin)
-         ("http://planet.clojure.in/atom.xml" clojure)
-         ("https://hnrss.org/newest?q=lisp" lisp)
-         ("http://planet.emacsen.org/atom.xml" emacs))))
+;; (use-package elfeed
+;;   :bind (:map elfeed-search-mode-map
+;;               ("B" . bjm/elfeed-show-visit-gui))
+;;   :config
+;;   (setq-default elfeed-search-filter "@7-days-ago--1-day-ago")
+;;   (setq browse-url-browser-function 'eww-browse-url)
+;;   (setq elfeed-show-entry-switch #'elfeed-display-buffer)
+;;   (setq shr-width 100)
+;;   (setq elfeed-feeds
+;;        '(("https://www.motherjones.com/kevin-drum/feed/" news)
+;;          ("https://jvns.ca/atom.xml" tech)
+;;          ("https://www.filfre.net/feed/rss/" games)
+;;          ("http://pragmaticemacs.com/feed/" emacs)
+;;          ("https://old.reddit.com/r/emacs.rss" emacs)
+;;          ("https://old.reddit.com/r/classicalguitar.rss" guitar)
+;;          ("https://old.reddit.com/r/austin.rss" local austin)
+;;          ("http://planet.clojure.in/atom.xml" clojure)
+;;          ("https://hnrss.org/newest?q=lisp" lisp)
+;;          ("http://planet.emacsen.org/atom.xml" emacs))))
 
 (use-package magit
   :defer 2
