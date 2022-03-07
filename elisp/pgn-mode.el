@@ -22,16 +22,18 @@
       ;;regexp-opt is a package that helps you write very simple regexps.
       `((,(regexp-opt pgn-keywords 'words) . font-lock-keyword-face)))
 ;;The syntax table contains information that tells Emacs how to operate on text, words, sentences etc.
-(defconst my-pgn-mode-syntax-table
+(defconst pgn-mode-syntax-table
   (let ((table (make-syntax-table)))
-    ;; ' is a string delimiter
-    (modify-syntax-entry ?' "\"" table)
-    ;; " is a string delimiter too
+    ;; comments
+    (modify-syntax-entry ?\{ "<" table)
+    (modify-syntax-entry ?\} ">" table)
+    ;; strings
     (modify-syntax-entry ?\" "\"" table)
     table))
 
+;; text-mode special-mode prog-mode fundamental-mode
 (define-derived-mode pgn-mode prog-mode "Simple PGN Mode"
-  :syntax-table my-pgn-mode-syntax-table
+  :syntax-table pgn-mode-syntax-table
   (setq font-lock-defaults '((pgn-font-lock-keywords)))
   (font-lock-fontify-buffer))
 
