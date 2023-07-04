@@ -28,6 +28,7 @@
 
 (use-package paredit
   :init
+  (define-key paredit-mode-map (kbd "RET") nil)
   (progn
     (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
     (add-hook 'clojure-mode-hook          #'enable-paredit-mode)
