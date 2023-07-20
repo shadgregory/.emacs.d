@@ -20,6 +20,8 @@
 (autoload 'cfml-mode "cfml-mode")
 (add-to-list 'auto-mode-alist '("\\.cfm\\'" . cfml-mode))
 (add-to-list 'auto-mode-alist '("\\.cfc\\'" . cfml-mode))
+(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+(setq-default fill-column 80)
 
 (mapc
  (lambda (pair)
@@ -59,6 +61,8 @@
 (setq org-clock-persist-query-resume nil)
 ;; use pretty things for the clocktable
 (setq org-pretty-entities t)
+(add-hook 'org-mode-hook 'org-hide-block-all)
+(setq warning-minimum-level :emergency)
 
 (defun pl/helm-alive-p ()
   (if (boundp 'helm-alive-p)
@@ -137,13 +141,25 @@
 ;;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 ;;(load-theme 'shad t)
 
+(use-package all-the-icons
+  :if (display-graphic-p))
+
 (use-package dashboard
   :config
+  (dashboard-setup-startup-hook)
+  :init
   (setq dashboard-items '((recents  . 20)
                           (bookmarks . 5)
                           (projects . 5)
                           (agenda . 5)))
-  (dashboard-setup-startup-hook))
+  (setq dashboard-set-heading-icons t
+        dashboard-set-file-icons t
+        dashboard-icon-type 'all-the-icons)
+  (setq dashboard-heading-icons '((recents   . "history")
+                                  (bookmarks . "bookmark")
+                                  (agenda    . "calendar")
+                                  (projects  . "rocket")
+                                  (registers . "database"))))
 
 ;; (defun bjm/elfeed-show-visit-gui ()
 ;;     "Wrapper for elfeed-show-visit to use gui browser instead of eww"
